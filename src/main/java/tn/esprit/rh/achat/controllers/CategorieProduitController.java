@@ -20,8 +20,8 @@ public class CategorieProduitController {
 	@GetMapping("/retrieve-all-categorieProduit")
 	@ResponseBody
 	public List<CategorieProduit> getCategorieProduit() {
-		List<CategorieProduit> list = categorieProduitService.retrieveAllCategorieProduits();
-		return list;
+		return categorieProduitService.retrieveAllCategorieProduits();
+		
 	}
 
 	// http://localhost:8089/SpringMVC/categorieProduit/retrieve-categorieProduit/8
@@ -34,12 +34,12 @@ public class CategorieProduitController {
 	// http://localhost:8089/SpringMVC/categorieProduit/add-categorieProduit
 	@PostMapping("/add-categorieProduit")
 	@ResponseBody
-	public CategorieProduit addCategorieProduit(@RequestBody CategorieProduit cp) {
-		CategorieProduit categorieProduit = categorieProduitService.addCategorieProduit(cp);
-		return categorieProduit;
+	public CategorieProduit addCategorieProduit(@PathVariable("categorieProduit-id") CategorieProduit cp) {
+		return categorieProduitService.addCategorieProduit(cp);
+		
 	}
 
-	// http://localhost:8089/SpringMVC/categorieProduit/remove-categorieProduit/{categorieProduit-id}
+	
 	@DeleteMapping("/remove-categorieProduit/{categorieProduit-id}")
 	@ResponseBody
 	public void removeCategorieProduit(@PathVariable("categorieProduit-id") Long categorieProduitId) {
@@ -49,7 +49,7 @@ public class CategorieProduitController {
 	// http://localhost:8089/SpringMVC/categorieProduit/modify-categorieProduit
 	@PutMapping("/modify-categorieProduit")
 	@ResponseBody
-	public CategorieProduit modifyCategorieProduit(@RequestBody CategorieProduit categorieProduit) {
+	public CategorieProduit modifyCategorieProduit(@PathVariable("categorieProduit-id") CategorieProduit categorieProduit) {
 		return categorieProduitService.updateCategorieProduit(categorieProduit);
 	}
 
