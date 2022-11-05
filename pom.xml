@@ -54,6 +54,10 @@
 			<version>3.0.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -70,10 +74,16 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+				
+			</plugin>
 		</plugins>
 	</build>
-<!-- Deploy to Nexus -->
-<distributionManagement>
+	
+	<distributionManagement>
 		<repository>
 			<id>deploymentRepo</id>
 			<name>Nexus Repository</name>
