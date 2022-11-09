@@ -2,12 +2,14 @@ package tn.esprit.rh.achat.test;
 
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 
@@ -42,13 +44,13 @@ public class UserServiceImplMockTest {
 
 
 
-//Test
-  //public void retrieveAllFactures() {
-   //when(FactureRepository.findAll()).thenReturn(new ArrayList());
-//List<Facture> response= factureService.retrieveAllFactures();
-//assertEquals(0, response.size());
+@Test
+  public void retrieveAllFactures() {
+   when(FactureRepository.findAll()).thenReturn(new ArrayList());
+List<Facture> response= factureService.retrieveAllFactures();
+assertEquals(0, response.size());
        
-   //}
+}
 }
 
 
