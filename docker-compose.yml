@@ -1,38 +1,23 @@
+version: "3"
 services:
-  frontend:
-    image: achat
+  database:
+    image: mysql
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: achatdb
     ports:
-      - "443:8043"
-    networks:
-      - front-tier
-      - back-tier
-    configs:
-      - httpd-config
-    secrets:
-      - server-certificate
-
-  backend:
-    image: achat
-    volumes:
-      - db-data:/etc/data
-    networks:
-      - back-tier
-
-volumes:
-  db-data:
-    driver: flocker
-    driver_opts:
-      size: "10GiB"
-
-configs:
-  httpd-config:
-    external: true
-
-secrets:
-  server-certificate:
-    external: true
-
-networks:
-  # The presence of these objects is sufficient to define them
-  front-tier: {}
-  back-tier: {}
+      - 3308:3308
+      #MYSQL_USER: achat_user
+      #MYSQL_PASSWORD: arij
+    #volumes:
+      #- mysql_database:/var/lib/mysql
+  spring-boot:
+    depends_on:
+      - database
+    image: ayaajmi/achat
+    restart: always
+    ports:
+      - 8089:8089
+    container_name: ayaajmi
