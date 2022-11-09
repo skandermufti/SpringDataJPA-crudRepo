@@ -1,5 +1,4 @@
-package tn.esprit.spring.service;
-
+package tn.esprit.rh.achat.test;
 
 
 import java.util.Date;
@@ -19,8 +18,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 import tn.esprit.rh.achat.entities.Facture;
+import tn.esprit.rh.achat.entities.Stock;
 import tn.esprit.rh.achat.repositories.FactureRepository;
 import tn.esprit.rh.achat.services.FactureServiceImpl;
+import tn.esprit.rh.achat.services.StockServiceImpl;
+import tn.esprit.rh.achat.repositories.StockRepository;
 
 
 
@@ -28,19 +30,19 @@ import tn.esprit.rh.achat.services.FactureServiceImpl;
 @ExtendWith(MockitoExtension.class)
 public class UserServiceImplMock {
     @Mock
-    FactureRepository FactureRepository;
+    StockRepository StockRepository;
     
     @InjectMocks
-    FactureServiceImpl factureService;
+    StockServiceImpl StockService;
     
-    Facture f1 = new Facture(null, 0, 0, new Date(), null, null, null, null, null);
+    Stock f1 = new Stock(null, null, null, null, null);
 
 
 
    @Test
     public void testRetrieveUser() {
-    Mockito.when(FactureRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(f1));
-    Facture facture1 = factureService.retrieveFacture(null);
+    Mockito.when(StockRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(f1));
+    Stock facture1 = StockService.retrieveStock(null);
     Assertions.assertNotNull(facture1);
     }
 }
