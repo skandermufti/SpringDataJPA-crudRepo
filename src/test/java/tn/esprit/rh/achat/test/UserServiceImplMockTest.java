@@ -1,8 +1,13 @@
-package tn.esprit.spring.service;
+package tn.esprit.rh.achat.test;
 
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -26,22 +31,24 @@ import tn.esprit.rh.achat.services.FactureServiceImpl;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class UserServiceImplMock {
+
+public class UserServiceImplMockTest {
     @Mock
     FactureRepository FactureRepository;
     
     @InjectMocks
     FactureServiceImpl factureService;
-    
-    Facture f1 = new Facture(null, 0, 0, new Date(), null, null, null, null, null);
+    @InjectMocks
+    Facture facture = new Facture(null, 0, 0, new Date(), null, null, null, null, null);
 
 
 
-   @Test
-    public void testRetrieveUser() {
-    Mockito.when(FactureRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(f1));
-    Facture facture1 = factureService.retrieveFacture(null);
-    Assertions.assertNotNull(facture1);
+    @Test
+    public void retrieveAllFactures() {
+    	when(FactureRepository.findAll()).thenReturn(new ArrayList());
+		List<Facture> response= factureService.retrieveAllFactures();
+		assertEquals(0, response.size());
+       
     }
 }
 
