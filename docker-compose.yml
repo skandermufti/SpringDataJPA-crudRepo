@@ -1,8 +1,8 @@
 version: "3"
 services:
   database:
-    image: mysql
-    container_name: mysql
+    image: achat
+    container_name: arijboudhina
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -20,4 +20,4 @@ services:
     restart: always
     ports:
       - 8089:8089
-    container_name: achat
+    container_name: arijboudhina
