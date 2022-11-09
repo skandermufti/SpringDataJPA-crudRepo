@@ -41,15 +41,15 @@ public class UserServiceImplMockTest {
 
 
 
-@Test
+// @Test
 
-public void retrieveAllFactures() {
+//public void retrieveAllFactures() {
 
-    Mockito.when(FactureRepository.findAll()).thenReturn(new ArrayList());
-    List<Facture> facture1 =factureService.retrieveAllFactures();
-    Assertions.assertNotNull(facture1);
+ // Mockito.when(FactureRepository.findAll()).thenReturn(new ArrayList());
+ // List<Facture> facture1 =factureService.retrieveAllFactures();
+//  Assertions.assertNotNull(facture1);
        
- }
+//}
 }
 
 
