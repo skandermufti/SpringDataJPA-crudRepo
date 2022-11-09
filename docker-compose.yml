@@ -16,8 +16,8 @@ services:
   spring-boot:
     depends_on:
       - database
-    image: arijboudhina/springback
+    image: arijboudhina/achat
     restart: always
     ports:
       - 8089:8089
-    container_name: spring
+    container_name: achat
