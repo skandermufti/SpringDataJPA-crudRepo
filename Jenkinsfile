@@ -45,21 +45,33 @@ stage('Nexus') {
      			  }
     		}*/
 		
-	 stage('Docker compose') {
-      		      steps {
+		 stage('Docker compose') {
+       steps {
          parallel(
            "Docker compose": {
                sh 'docker-compose up '
            },
            "Delete running containers": {
-		       sh 'sleep 4m '
+		       sh 'sleep 10m '
                sh 'docker rm -f ci-spring ci-db ci-angular '
            }
          )
        }
      }
-	}  
-			post {
+	 
+		
+	}
+		
+		post {
+			
+			  always {
+           
+	       dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+	       //publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'owasp-zap-report', reportFiles: 'zap_report.html', reportName: 'Owasp zap HTML Report', reportTitles: 'Owasp zap HTML Report', useWrapperFileDirectly: true])
+	      
+		  //   sendNotification currentBuild.result
+           }
+			
 				success {
 
 					echo "passed"
@@ -68,6 +80,7 @@ stage('Nexus') {
 				       echo "failed"
 				
 		                }
+
 
 }
 }
