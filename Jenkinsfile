@@ -5,19 +5,19 @@ pipeline {
         
     
 
- stage ('Junit + Mockito') {
+ /*stage ('Junit + Mockito') {
      steps {
    sh 'mvn test'
   
 }
-}
+}*/
 	  stage('Build Artifact - Maven') {
 			steps {
 				sh "mvn clean package -DskipTests=true"
 				archive 'target/*.jar'
 			      }
 		}
-stage ('Sonar + jacOcO') {
+/*stage ('Sonar + jacOcO') {
 steps {
 
 sh 'mvn sonar:sonar -Dsonar.projectKey=tn.esprit.rh:achat -Dsonar.login=admin -Dsonar.password=admin1 -Dsonar.host.url=http://192.168.1.20:9000'
@@ -43,9 +43,31 @@ stage('Nexus') {
          			  sh 'docker push thaboutiikram/spring:latest'
          			}
      			  }
-    		}
+    		}*/
 		
-	
+	 stage('Docker compose') {
+      		      steps {
+         parallel(
+           "Docker compose": {
+               sh 'docker-compose up '
+           },
+           "Delete running containers": {
+		       sh 'sleep 4m '
+               sh 'docker rm -f ci-spring ci-db ci-angular '
+           }
+         )
+       }
+     }
+	}  
+			post {
+				success {
+
+					echo "passed"
+				}    
+			       failure {
+				       echo "failed"
+				
+		                }
 
 }
 }
