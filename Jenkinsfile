@@ -44,6 +44,6 @@ stage('NEXUS'){
                 echo 'nexus';
             }
         }
-}
+
 }
 }
