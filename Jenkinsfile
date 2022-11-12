@@ -5,11 +5,6 @@ pipeline {
        }
     
   stages{
-	  stage('Git ') {
-            steps {
-                echo 'pulling Main Project from git ...';
-                git branch: 'thabouti', credentialsId: 'github', url: 'https://github.com/skandermufti/SpringDataJPA-crudRepo.git'            }
-        }
         
     
 stage ('Cleaning the project') {
@@ -45,7 +40,7 @@ stage('Nexus') {
 			        }
 	                } 
 		
-	}
+	
 
 }
 }
