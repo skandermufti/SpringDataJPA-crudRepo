@@ -22,7 +22,7 @@ stage ('Cleaning the project') {
   
 }
 }
-stage ('Sonar') {
+stage ('Sonar + jacOcO') {
 steps {
 
 sh 'mvn sonar:sonar -Dsonar.projectKey=tn.esprit.rh:achat -Dsonar.login=admin -Dsonar.password=admin1 -Dsonar.host.url=http://192.168.1.20:9000'
