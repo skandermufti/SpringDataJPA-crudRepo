@@ -1,0 +1,23 @@
+version: "3"
+services:
+  database:
+    image: mysql
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: achatdb
+    ports:
+      - 3308:3308
+      #MYSQL_USER: achat_user
+      #MYSQL_PASSWORD: arij
+    #volumes:
+      #- mysql_database:/var/lib/mysql
+  spring-boot:
+    depends_on:
+      - database
+    image: chaima0808/achat
+    restart: always
+    ports:
+      - 8089:8089
+    container_name: chaima0808
