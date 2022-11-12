@@ -4,22 +4,19 @@ pipeline {
   stages{
         
     
-stage ('Cleaning the project') {
-     steps {
-   echo 'cleaning project'
-   echo 'Maven version'
-   sh "mvn -version"
-   sh "mvn help:effective-settings"
-   sh "mvn clean install"
 
-}
-}
  stage ('Junit + Mockito') {
      steps {
    sh 'mvn test'
   
 }
 }
+	  stage('Build Artifact - Maven') {
+			steps {
+				sh "mvn clean package -DskipTests=true"
+				archive 'target/*.jar'
+			      }
+		}
 stage ('Sonar + jacOcO') {
 steps {
 
@@ -36,6 +33,17 @@ stage('Nexus') {
 				sh'mvn clean deploy -Dmaven.test.skip=true -Dresume=false'
 			        }
 	                } 
+	  
+	  stage('Docker Build and Push') {
+                       steps {
+                               withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
+         			  sh 'printenv'
+        			  sh 'docker build -t thaboutiikram/spring .'
+	 			  sh 'docker tag thaboutiikram/spring thaboutiikram/spring:latest'
+         			  sh 'docker push thaboutiikram/spring:latest'
+         			}
+     			  }
+    		}
 		
 	
 
