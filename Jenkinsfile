@@ -17,7 +17,7 @@ pipeline {
 				archive 'target/*.jar'
 			      }
 		}
-/*stage ('Sonar + jacOcO') {
+stage ('Sonar + jacOcO') {
 steps {
 
 sh 'mvn sonar:sonar -Dsonar.projectKey=tn.esprit.rh:achat -Dsonar.login=admin -Dsonar.password=admin1 -Dsonar.host.url=http://192.168.1.20:9000'
@@ -34,7 +34,7 @@ stage('Nexus') {
 			        }
 	                } 
 	  
-	  stage('Docker Build and Push') {
+	/*  stage('Docker Build and Push') {
                        steps {
                                withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
          			  sh 'printenv'
