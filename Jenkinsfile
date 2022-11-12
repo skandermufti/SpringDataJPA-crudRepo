@@ -25,9 +25,9 @@ stage ('Cleaning the project') {
 
 }
 }
- stage ('Compile') {
+ stage ('Junit + Mockito') {
      steps {
-   sh 'mvn compile'
+   sh 'mvn test'
   
 }
 }
