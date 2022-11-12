@@ -5,15 +5,6 @@ pipeline {
        }
     
   stages{
-    stage ('Getting projects from git'){
-        steps{
-            echo 'Projet is downloading'
-            git branch :'thabouti',
-            url : 'https://github.com/skandermufti/SpringDataJPA-crudRepo.git',
-                     credentialsId:"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";
-
-        }
-    }
     
 stage ('Cleaning the project') {
      steps {
@@ -36,14 +27,19 @@ steps {
 
 sh 'mvn sonar:sonar -Dsonar.projectKey=tn.esprit.rh:achat -Dsonar.login=admin -Dsonar.password=admin1 -Dsonar.host.url=http://192.168.1.20:9000'
 }
-
+post {
+				always {
+					jacoco execPattern: 'target/jacoco.exec'
+				}    
+			} 
 }
-stage('NEXUS'){
-            steps{
-                sh 'mvn deploy'
-                echo 'nexus';
-            }
-        }
+stage('Nexus') {
+			steps {				
+				sh'mvn clean deploy -Dmaven.test.skip=true -Dresume=false'
+			        }
+	                } 
+		
+	}
 
 }
 }
