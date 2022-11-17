@@ -7,11 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+@Builder
 
 @Entity
 @Getter
@@ -29,6 +30,11 @@ public class SecteurActivite implements Serializable{
 	private String codeSecteurActivite;
 	private String libelleSecteurActivite;
 	@ManyToMany(mappedBy="secteurActivites")
-	@JsonIgnore
 	private Set<Fournisseur> fournisseurs;
+	public SecteurActivite(String codeSecteurActivite, String libelleSecteurActivite) {
+		super();
+		this.codeSecteurActivite = codeSecteurActivite;
+		this.libelleSecteurActivite = libelleSecteurActivite;
+	}
+	
 }
