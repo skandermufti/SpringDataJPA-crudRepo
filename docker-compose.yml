@@ -1,23 +1,37 @@
 version: "3"
 services:
-  database:
+  mysqldb:
     image: mysql
     container_name: mysql
-    restart: always
+    command: mysqld --default-authentication-plugin=mysql_native_password
+ 
+    ports:
+      - "3306:3306"
+    hostname: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: achatdb
-    ports:
-      - 3308:3308
-      #MYSQL_USER: achat_user
-      #MYSQL_PASSWORD: arij
-    #volumes:
-      #- mysql_database:/var/lib/mysql
-  spring-boot:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=achatdb
+    volumes:
+      - db:/var/lib/mysql
+      - mysql-data:/var/local/mysql/data
+  app_maven:
     depends_on:
-      - database
+      - mysqldb
     image: arijboudhina/achat
-    restart: always
-    ports:
-      - 8089:8089
     container_name: arijboudhina
+    restart: on-failure
+    ports:
+      - "8089:8089"
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/achatdb?useSSL=false",
+        "spring.datasource.username" : "root",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update" 
+        }'
+    volumes:
+      - .m2:/root/.m2
+volumes: 
+      db:
+      mysql-data:     
+      
