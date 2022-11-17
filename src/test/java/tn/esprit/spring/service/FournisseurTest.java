@@ -56,7 +56,7 @@ public class FournisseurTest {
 		Assertions.assertNotEquals(fournisseurs.size(), 0L);
 	}
 	
-	@Test
+	/*@Test
     @Order(3)
 	public void updateFournisseurTest() {
 		Fournisseur fournisseur = Fournisseur.builder()
@@ -69,7 +69,7 @@ public class FournisseurTest {
 		Fournisseur fournisseurUpdated = fournisseurRepository.save(fournisseur);
 		Assertions.assertEquals(fournisseurUpdated.getCode(), "UPCODE");
 	
-	}
+	}*/
 	
 	  @Test
 	    @Order(4)
