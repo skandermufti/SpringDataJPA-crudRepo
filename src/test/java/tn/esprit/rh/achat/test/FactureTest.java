@@ -40,7 +40,7 @@ public class FactureTest {
     @InjectMocks
     FactureServiceImpl factureService;
 
-    //@Test
+   @Test
     public void testRetrieveFacture() {
 
         Facture facture = new Facture(1L, 100, 500, null, null, null, null, null, null);
@@ -57,7 +57,7 @@ public class FactureTest {
     }
 
 
-   // @Test
+    @Test
     public void createTest()
     {
         Facture facture2 = new Facture(2L, 100, 500, null, null, null, null, null, null);
@@ -70,7 +70,7 @@ public class FactureTest {
     }
 
 
-    //@Test
+    @Test
     public void retrieveAllFactureTest()
     {
         List<Facture> Facturelist = new ArrayList<Facture>() {
@@ -88,7 +88,7 @@ public class FactureTest {
 
 
         when(factureService.retrieveAllFactures()).thenReturn(Facturelist);
-        //test
+        //@test
         List<Facture> factureList = factureService.retrieveAllFactures();
         assertEquals(3, factureList.size());
         System.out.println(" Retrieve all is working correctly...!!");
