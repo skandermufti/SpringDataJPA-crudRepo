@@ -30,30 +30,16 @@ import tn.esprit.rh.achat.services.SecteurActiviteServiceImpl;
 @ExtendWith(MockitoExtension.class)
 public class UserServiceImplMock {
 	
-	@Mock
-	SecteurActiviteRepository SecteurRepository;
+	
 	@Mock
 	FournisseurRepository fr;
 	
-	@InjectMocks
-	SecteurActiviteServiceImpl SecteurService;
+	
 	
 	@InjectMocks
 	FournisseurServiceImpl fs;
 
-	/*@Test
-	public void testRetrieveSecteur() {
-		SecteurActivite secteur = new SecteurActivite(1L,"123","commercial",null);
-		secteur.setIdSecteurActivite(1L);
-		
-		
-		Mockito.when(SecteurRepository.findById(1L)).thenReturn(Optional.of(secteur));
-		SecteurService.retrieveSecteurActivite(1L);
-		Assertions.assertNotNull(secteur);
-		
-		System.out.println(secteur);
-		System.out.println("Test 1 : ID retrival - work !");
-	}*/
+
 	
 	@Test
 	public void testRetriveFournisseur() {
@@ -81,23 +67,7 @@ public class UserServiceImplMock {
 	
 	
 	
-	
-	/*@Test
-	public void getAllSecteursTest() {
-		List<SecteurActivite> SecteurList = new ArrayList<SecteurActivite>() {{
-			
-			add(new SecteurActivite(null,"bbbb","gggg",null));
-			add(new SecteurActivite(null,"kkkk","llll",null));
-			add(new SecteurActivite(null,"uuuu","wwww",null));
 
-		}};
-		
-		when(SecteurService.retrieveAllSecteurActivite()).thenReturn(SecteurList);
-		List<SecteurActivite> sList = SecteurService.retrieveAllSecteurActivite();
-		assertEquals(3, sList.size());
-		System.out.println("Test 3 : Retrive all sector instances - work !");
-		
-	}*/
 	
 	@Test
 	public void TestDeleteFournisseur() {
