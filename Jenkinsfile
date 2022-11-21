@@ -105,6 +105,29 @@ stage('Build Docker Image') {
         always {
             cleanWs()
         }
+		
+		
+		
+		post {
+        success {
+             mail to: "oussama.nedri@esprit.tn",
+                    subject: "Build sucess",
+                    body: "sucess"
+            echo 'successful'
+        }
+        failure {
+             mail to: "oussama.nedri@esprit.tn",
+                    subject: "Build failed",
+                    body: "failed"
+            echo 'failed'
+        }
+      }
+		
+		
+		
+		
+		
+		
     }
 
     
