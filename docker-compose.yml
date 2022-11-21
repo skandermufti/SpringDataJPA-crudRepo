@@ -17,7 +17,7 @@ services:
   app_maven:
     depends_on:
       - mysqldb
-    image: oussemanedri/achat
+    image: oussamanedri/achat
     container_name: oussemanedri
     restart: on-failure
     ports:
